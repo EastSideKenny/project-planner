@@ -1,10 +1,13 @@
 <template>
   <div class="home">
     <FilterNav @filterChange="current = $event" :current="current"/>
-    <div v-if="projects.length">
+    <div v-if="filteredProjects.length">
       <div v-for="project in filteredProjects" :key="project.id">
         <SingleProject :project="project" @delete="handleDelete" @complete="handleComplete" />
       </div>
+    </div>
+    <div v-else class="empty">
+       <p>You currently have no projects to show here :)</p>
     </div>
   </div>
 </template>
@@ -54,3 +57,16 @@ export default {
   }
 }
 </script>
+
+<style>
+.empty {
+    margin: 20px auto;
+    background: #eee;
+    padding: 10px 20px;
+    border-radius: 4px;
+    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.05);
+}
+.empty p{
+  color: #999;
+}
+</style>
